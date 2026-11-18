@@ -697,7 +697,7 @@
    "options": "fa fa-shopping-cart"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "update_stock",
    "fieldtype": "Check",
    "hide_days": 1,
@@ -705,7 +705,7 @@
    "label": "Update Stock",
    "oldfieldname": "update_stock",
    "oldfieldtype": "Check",
-   "print_hide": 1
+   "reqd": 1
   },
   {
    "fieldname": "scan_barcode",
@@ -2188,8 +2188,8 @@
    "link_fieldname": "consolidated_invoice"
   }
  ],
- "modified": "2025-03-17 19:32:31.809658",
- "modified_by": "Administrator",
+ "modified": "2026-10-08 14:12:23.148813",
+ "modified_by": "zulukombe@gmail.com",
  "module": "Accounts",
  "name": "Sales Invoice",
  "naming_rule": "By \"Naming Series\" field",
@@ -2243,5 +2243,6 @@
  "timeline_field": "customer",
  "title_field": "title",
  "track_changes": 1,
- "track_seen": 1
+ "track_seen": 1,
+ "track_views": 1
 }

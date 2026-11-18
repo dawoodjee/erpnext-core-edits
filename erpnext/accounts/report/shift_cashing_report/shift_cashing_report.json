@@ -1,0 +1,172 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2025-07-05 12:12:13.536402",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "default": "",
+   "fieldname": "shift_start",
+   "fieldtype": "Datetime",
+   "label": "Shift Start",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "",
+   "fieldname": "shift_end",
+   "fieldtype": "Datetime",
+   "label": "shift_end",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "frappe.session.user",
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Agent",
+   "mandatory": 1,
+   "options": "User",
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_airtel2",
+   "fieldtype": "Currency",
+   "label": "Airtel 2 (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_airtel3",
+   "fieldtype": "Currency",
+   "label": "Airtel 3 (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_cash",
+   "fieldtype": "Currency",
+   "label": "Cash (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_okv_airtel",
+   "fieldtype": "Currency",
+   "label": "Okavango Airtel (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_okv_mtn",
+   "fieldtype": "Currency",
+   "label": "Okavango MTN (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_spenn",
+   "fieldtype": "Currency",
+   "label": "Spenn (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_stanbic_wallet",
+   "fieldtype": "Currency",
+   "label": "Stanbic Wallet (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_tenga",
+   "fieldtype": "Currency",
+   "label": "Tenga (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_tingg",
+   "fieldtype": "Currency",
+   "label": "Tingg (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_merchant_airtel",
+   "fieldtype": "Currency",
+   "label": "Merchant Airtel (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_swipe_absa",
+   "fieldtype": "Currency",
+   "label": "Swipe ABSA (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_fnb_wallet",
+   "fieldtype": "Currency",
+   "label": "FNB Wallet (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  },
+  {
+   "default": "0",
+   "fieldname": "cash_izwe_pay",
+   "fieldtype": "Currency",
+   "label": "IZWE Pay (Counted)",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Oka V",
+ "letterhead": null,
+ "modified": "2025-07-05 14:25:51.278965",
+ "modified_by": "Administrator",
+ "module": "Accounts",
+ "name": "Shift Cashing Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "WITH p AS (\r\n    SELECT name, mode_of_payment, paid_amount, creation\r\n    FROM `tabPayment Entry`\r\n    WHERE docstatus = 1\r\n      AND owner = %(agent)s\r\n      AND creation BETWEEN %(shift_start)s AND %(shift_end)s\r\n),\r\n\r\nm AS (\r\n    SELECT\r\n        mop.name AS label,\r\n        CASE mop.name\r\n            WHEN 'Airtel 2'        THEN %(cash_airtel2)s\r\n            WHEN 'Airtel 3'        THEN %(cash_airtel3)s\r\n            WHEN 'Cash'            THEN %(cash_cash)s\r\n            WHEN 'Okavango Airtel' THEN %(cash_okv_airtel)s\r\n            WHEN 'Okavango MTN'    THEN %(cash_okv_mtn)s\r\n            WHEN 'Spenn'           THEN %(cash_spenn)s\r\n            WHEN 'Stanbic Wallet'  THEN %(cash_stanbic_wallet)s\r\n            WHEN 'Tenga'           THEN %(cash_tenga)s\r\n            WHEN 'Tingg'           THEN %(cash_tingg)s\r\n            WHEN 'Merchant Airtel' THEN %(cash_merchant_airtel)s\r\n            WHEN 'Swipe ABSA'      THEN %(cash_swipe_absa)s\r\n            WHEN 'FNB Wallet'      THEN %(cash_fnb_wallet)s\r\n            WHEN 'IZWE Pay'        THEN %(cash_izwe_pay)s\r\n            ELSE 0\r\n        END                                AS cashing,\r\n        IFNULL(SUM(p.paid_amount),0)       AS system_balance,\r\n        CASE mop.name\r\n            WHEN 'Airtel 2'        THEN %(cash_airtel2)s\r\n            WHEN 'Airtel 3'        THEN %(cash_airtel3)s\r\n            WHEN 'Cash'            THEN %(cash_cash)s\r\n            WHEN 'Okavango Airtel' THEN %(cash_okv_airtel)s\r\n            WHEN 'Okavango MTN'    THEN %(cash_okv_mtn)s\r\n            WHEN 'Spenn'           THEN %(cash_spenn)s\r\n            WHEN 'Stanbic Wallet'  THEN %(cash_stanbic_wallet)s\r\n            WHEN 'Tenga'           THEN %(cash_tenga)s\r\n            WHEN 'Tingg'           THEN %(cash_tingg)s\r\n            WHEN 'Merchant Airtel' THEN %(cash_merchant_airtel)s\r\n            WHEN 'Swipe ABSA'      THEN %(cash_swipe_absa)s\r\n            WHEN 'FNB Wallet'      THEN %(cash_fnb_wallet)s\r\n            WHEN 'IZWE Pay'        THEN %(cash_izwe_pay)s\r\n            ELSE 0\r\n        END - IFNULL(SUM(p.paid_amount),0) AS variance,\r\n        '' AS comment,\r\n        1  AS sort_key\r\n    FROM `tabMode of Payment` mop\r\n    LEFT JOIN p ON p.mode_of_payment = mop.name\r\n    WHERE mop.enabled = 1\r\n    GROUP BY mop.name\r\n),\r\n\r\npast AS (\r\n    SELECT 'Payments for Past Invoices','',IFNULL(SUM(p.paid_amount),0),'','',2\r\n    FROM p\r\n    LEFT JOIN `tabPayment Entry Reference` pr ON pr.parent=p.name AND pr.reference_doctype='Sales Invoice'\r\n    LEFT JOIN `tabSales Invoice` si ON si.name=pr.reference_name\r\n    WHERE si.posting_date < DATE(%(shift_start)s)\r\n),\r\ntoday AS (\r\n    SELECT 'Payments for Today''s Invoices','',IFNULL(SUM(p.paid_amount),0),'','',3\r\n    FROM p\r\n    LEFT JOIN `tabPayment Entry Reference` pr ON pr.parent=p.name AND pr.reference_doctype='Sales Invoice'\r\n    LEFT JOIN `tabSales Invoice` si ON si.name=pr.reference_name\r\n    WHERE si.posting_date BETWEEN DATE(%(shift_start)s) AND DATE(%(shift_end)s)\r\n),\r\nfuture AS (\r\n    SELECT 'Payments for Future Invoices','',IFNULL(SUM(p.paid_amount),0),'','',4\r\n    FROM p\r\n    LEFT JOIN `tabPayment Entry Reference` pr ON pr.parent=p.name AND pr.reference_doctype='Sales Invoice'\r\n    LEFT JOIN `tabSales Invoice` si ON si.name=pr.reference_name\r\n    WHERE si.posting_date > DATE(%(shift_end)s)\r\n),\r\nunalloc AS (\r\n    SELECT 'Unallocated Payments','',IFNULL(SUM(p.paid_amount),0),'','',5\r\n    FROM p\r\n    LEFT JOIN `tabPayment Entry Reference` pr ON pr.parent=p.name AND pr.reference_doctype='Sales Invoice'\r\n    WHERE pr.name IS NULL\r\n),\r\n\r\nunpaid AS (\r\n    SELECT\r\n        si.name, 0, si.grand_total, si.outstanding_amount,\r\n        si.customer, 6\r\n    FROM `tabSales Invoice` si\r\n    WHERE si.docstatus = 1\r\n      AND si.owner = %(agent)s\r\n      AND si.creation BETWEEN %(shift_start)s AND %(shift_end)s\r\n      AND si.outstanding_amount > 0\r\n)\r\n\r\nSELECT\r\n    label          AS \"Mode of Payment:Data:200\",\r\n    cashing        AS \"Cashing (Manual):Currency:130\",\r\n    system_balance AS \"System Balance (Auto):Currency:150\",\r\n    variance       AS \"Variance:Currency:120\",\r\n    comment        AS \"Comment:Data:180\"\r\nFROM (\r\n    SELECT * FROM m\r\n    UNION ALL SELECT * FROM past\r\n    UNION ALL SELECT * FROM today\r\n    UNION ALL SELECT * FROM future\r\n    UNION ALL SELECT * FROM unalloc\r\n    UNION ALL SELECT * FROM unpaid\r\n) x\r\nORDER BY sort_key, label\r\n",
+ "ref_doctype": "Payment Entry",
+ "report_name": "Shift Cashing Report",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Blogger"
+  },
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

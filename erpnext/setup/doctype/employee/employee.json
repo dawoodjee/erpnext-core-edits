@@ -817,13 +817,14 @@
    "label": "IBAN"
   }
  ],
+ "grid_page_length": 50,
  "icon": "fa fa-user",
  "idx": 24,
  "image_field": "image",
  "is_tree": 1,
  "links": [],
- "modified": "2025-02-07 13:54:40.122345",
- "modified_by": "Administrator",
+ "modified": "2026-08-24 12:56:08.419479",
+ "modified_by": "zulukombe@gmail.com",
  "module": "Setup",
  "name": "Employee",
  "naming_rule": "By \"Naming Series\" field",
@@ -864,6 +865,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "employee_name",
  "show_name_in_global_search": 1,
  "sort_field": "modified",

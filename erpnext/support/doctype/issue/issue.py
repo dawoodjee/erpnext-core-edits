@@ -36,6 +36,7 @@ class Issue(Document):
 		customer_name: DF.Data | None
 		description: DF.TextEditor | None
 		email_account: DF.Link | None
+		feedback_log: DF.Link | None
 		first_responded_on: DF.Datetime | None
 		first_response_time: DF.Duration | None
 		issue_split_from: DF.Link | None

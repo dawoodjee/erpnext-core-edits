@@ -1,0 +1,78 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"Xkmgb1Kf5D\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Kitchen Control</span>\",\"col\":12}},{\"id\":\"qlrMG_1kD8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Kitchen Dashboard\",\"col\":3}},{\"id\":\"MwjY0V0QDc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Waste Per Item\",\"col\":3}},{\"id\":\"idrgh_kwkn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Packing Errors Today\",\"col\":3}},{\"id\":\"Chu4K7dWYY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Late Minutes\",\"col\":3}},{\"id\":\"C56_Hf8rgD\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Late Minutes\",\"col\":3}},{\"id\":\"lBgUZ-dU4J\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Packing Error Breakdown\",\"col\":3}}]",
+ "creation": "2026-02-06 06:34:02.197398",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Kitchen Control",
+ "links": [],
+ "modified": "2026-02-06 08:42:14.228667",
+ "modified_by": "Administrator",
+ "module": "Stock",
+ "name": "Kitchen Control",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "Selling",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Kitchen Supervisor"
+  },
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Manufacturing Manager"
+  }
+ ],
+ "sequence_id": 40.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Kitchen Dashboard",
+   "link_to": "Kitchen Control",
+   "type": "Dashboard"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Packing Error Breakdown",
+   "link_to": "KSR Packing Error Type Breakdown Source",
+   "report_ref_doctype": "Kitchen Shift Report",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Waste Per Item",
+   "link_to": "KSR Waste Item Breakdown Source",
+   "report_ref_doctype": "Kitchen Shift Report",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Packing Errors Today",
+   "link_to": "KSR Packing Errors Today",
+   "report_ref_doctype": "Kitchen Shift Report",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Late Minutes",
+   "link_to": "KSR Late Minutes Trend Source",
+   "report_ref_doctype": "Kitchen Shift Report",
+   "type": "Report"
+  }
+ ],
+ "title": "Kitchen Control"
+}
